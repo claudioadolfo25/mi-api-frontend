@@ -8,15 +8,11 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "resolutions": {
-   "react": "^19.1.0",
-   "react-dom": "^19.1.0"
-},
   "dependencies": {
     "@auth0/auth0-react": "^2.3.0",
     "next": "15.3.4",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react": "19.1.0",  // Versión exacta
+    "react-dom": "19.1.0"  // Versión exacta
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -25,5 +21,9 @@
     "@types/react-dom": "^19",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "overrides": {  // Nueva sección para forzar compatibilidad
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
   }
 }
