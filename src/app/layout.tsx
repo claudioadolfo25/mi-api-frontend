@@ -1,24 +1,27 @@
-'use client';
-
+// src/app/layout.tsx
+import './globals.css';
 import { Auth0Provider } from '@auth0/auth0-react';
-import { ReactNode } from 'react';
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html lang='es'>
-      <body>
-        <Auth0Provider
-          domain={process.env.NEXT_PUBLIC_AUTH0_DOMAIN!}
-          clientId={process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID!}
-          authorizationParams={{
-            redirect_uri: typeof window !== 'undefined' ? window.location.origin : '',
-            audience: process.env.NEXT_PUBLIC_AUTH0_AUDIENCE!,
-            scope: 'openid profile email',
-          }}
-        >
+    <Auth0Provider
+      domain={process.env.NEXT_PUBLIC_AUTH0_DOMAIN!}
+      clientId={process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID!}
+      authorizationParams={{
+        redirect_uri: process.env.NEXT_PUBLIC_AUTH0_REDIRECT_URI || window.location.origin,
+        audience: process.env.NEXT_PUBLIC_AUTH0_AUDIENCE!
+      }}
+      cacheLocation="localstorage"
+    >
+      <html lang="es">
+        <body className="bg-gray-50">
           {children}
-        </Auth0Provider>
-      </body>
-    </html>
+        </body>
+      </html>
+    </Auth0Provider>
   );
 }
