@@ -1,4 +1,5 @@
-// src/app/layout.tsx
+// Añade al inicio del archivo
+"use client"; // Necesario porque Auth0Provider usa hooks// src/app/layout.tsx
 import './globals.css';
 import { Auth0Provider } from '@auth0/auth0-react';
 
