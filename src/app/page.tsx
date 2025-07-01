@@ -1,15 +1,21 @@
+// src/app/page.tsx
 import LoginButton from './login-button';
 
 export default function Home() {
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center">
-      <h1 className="text-4xl font-bold text-center mb-4">
-        ¡Bienvenido a QMSNCH!
-      </h1>
-      <p className="text-lg text-gray-600 mb-6">
-        Backend funcionando en <a href="http://localhost:3001" className="text-blue-500 hover:underline">http://localhost:3001</a>
-      </p>
-      <LoginButton />
+    <main className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
+      <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-md text-center">
+        <h1 className="text-2xl font-bold text-qmsnch-primary mb-2">
+          ¡Bienvenido a QMSNCH!
+        </h1>
+        
+        {/* Mensaje actualizado con variable de entorno */}
+        <p className="text-gray-600 mb-6">
+          Sistema conectado a: {process.env.NEXT_PUBLIC_API_BASE}
+        </p>
+        
+        <LoginButton />
+      </div>
     </main>
   );
 }
