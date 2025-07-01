@@ -1,6 +1,7 @@
 // src/app/layout.tsx
-import './globals.css';
-import AuthProvider from './providers'; // Asegúrate de crear este archivo
+"use client"; // ¡Añade esto al inicio!
+
+import { Auth0Provider } from '@auth0/auth0-react';
 
 export default function RootLayout({
   children,
@@ -8,12 +9,19 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="es">
-      <body className="bg-gray-50">
-        <AuthProvider> {/* Envuelve con el provider */}
+    <Auth0Provider
+      domain={process.env.NEXT_PUBLIC_AUTH0_DOMAIN!}
+      clientId={process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID!}
+      authorizationParams={{
+        redirect_uri: typeof window !== 'undefined' ? window.location.origin : '/',
+        audience: process.env.NEXT_PUBLIC_AUTH0_AUDIENCE!
+      }}
+    >
+      <html lang="es">
+        <body className="bg-gray-50">
           {children}
-        </AuthProvider>
-      </body>
-    </html>
+        </body>
+      </html>
+    </Auth0Provider>
   );
 }
